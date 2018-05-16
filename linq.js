@@ -54,15 +54,15 @@ Array.prototype.single = function(predicate) {
 Array.prototype.orderBy = function() {
 	return this.sort((e1,e2) => {
   	for(var i = 0; i < arguments.length; i++) {
-			var property = arguments[i];
-			if(property.substr(0,1) === '-') {
-				property = property.substr(1);
-				if(e1[property] < e2[property]) return 1;
-				if(e1[property] > e2[property]) return -1;
-			} else {
-				if(e1[property] < e2[property]) return -1;
-				if(e1[property] > e2[property]) return 1;
-			}
+		var property = arguments[i];
+		if(property.substr(0,1) === '-') {
+			property = property.substr(1);
+			if(e1[property] < e2[property]) return 1;
+			if(e1[property] > e2[property]) return -1;
+		} else {
+			if(e1[property] < e2[property]) return -1;
+			if(e1[property] > e2[property]) return 1;
 		}
+	}
   });
 }
