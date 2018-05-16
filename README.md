@@ -30,7 +30,7 @@ Takes the first `count` elements int he array
 	// expected outcome: [{ first: 1, second: "a", third: 0 }]
 
 ### .orderBy(properties)
-Orders array based on objects properties in ascending order unless denoted by a minus/subtract symbol.
+Orders array based on element's properties in ascending order unless denoted by a minus/subtract symbol.
 
 	arrToSort.orderBy( "first", "-second", "third" );
 	/* expected outcome: [
