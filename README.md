@@ -1,5 +1,5 @@
 # linq.js
-A simple JS library that mimics some of the C# LINQ Extension. Most of the extentions are just wrappers to already existing Array prototype method.
+A simple JS library that mimics some of the C# LINQ Extension. Most of the extensions are just wrappers to already existing Array prototype method.
 
 Using this library, you are able to filter and sort as you would in C#:
 
