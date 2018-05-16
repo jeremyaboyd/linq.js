@@ -12,19 +12,25 @@ A simple JS library that mimics some of the C# LINQ Extension. Most of the exten
 	];
 
 ### .where(predicate)
+Filters the array based on the `predicate` function provided.
+
 	arrToSort.where( a => a.first === 1 );
 	// expected outcome: [{ first: 2, second: "a", third: 0 }]
 
 ### .skip(count)
+Skips `count` elements in the array.
+
 	arrToSort.skip( 4 );
 	// expected outcome: [{ first: 3, second: "b", third: 0 }]
 
 ### .take(count)
+Takes the first `count` elements int he array
+
 	arrToSort.take( 1 );
 	// expected outcome: [{ first: 1, second: "a", third: 0 }]
 
 ### .orderBy(properties)
-Orders properties in ascending order unless denoted by a minus/subtract symbol.
+Orders array based on objects properties in ascending order unless denoted by a minus/subtract symbol.
 
 	arrToSort.orderBy( "first", "-second", "third" );
 	/* expected outcome: [
