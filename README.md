@@ -1,8 +1,13 @@
 # linq.js
 A simple JS library that mimics some of the C# LINQ Extension. Most of the extentions are just wrappers to already existing Array prototype method.
 
-## Examples
+Using this library, you are able to filter and sort as you would in C#:
 
+	var data = users.where(u => u.isActive).orderBy("-lastLogin").skip(page * pageSize).take(pageSize);
+
+## Documentation
+
+### Setup
 	var arrToSort = [
 		{ first: 1, second: "a", third: 0 },
 		{ first: 1, second: "b", third: 0 },
