@@ -34,6 +34,10 @@ Array.prototype.take = function(count) {
 	return this.slice(0, count);
 }
 
+Array.prototype.select = function(func) {
+	return this.map(func);
+}
+
 Array.prototype.firstOrDefault = function(predicate) {
 	var that = this;
 	if(predicate && typeof predicate === "function")
