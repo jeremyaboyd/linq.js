@@ -3,7 +3,17 @@ A simple JS library that mimics some of the C# LINQ Extension. Most of the exten
 
 Using this library, you are able to filter and sort as you would in C#:
 
-	var data = users.where(u => u.isActive).orderBy("-lastLogin").skip(page * pageSize).take(pageSize);
+	var data = users.where(u => u.isActive)
+	                .orderBy("-lastLogin")
+			.skip(page * pageSize)
+			.take(pageSize)
+			.select(u => {
+			    return {
+			        "User Name": u.userName,
+				"Last Login": new Date(u.lastLogin).toLocaleString(),
+				"Created On": new Date(u.createdOn).toLocaleString()
+			    }
+			});
 
 ## Documentation
 
@@ -46,6 +56,12 @@ Orders array based on element's properties in ascending order unless denoted by 
 		{ first: 3, second: "b", third: 1 },
 	]*/
   
+### .select(func)
+Returns array with elements based on the output of `func`
+
+	arrToSort.select( a => a.first );
+	// expected outcome: [ 1, 1, 2, 3, 3 ]
+
 ### .first(\[predicate]) and .firstOrDefault(\[predicate])
 Will return the first element in the array. Default will return null if 0 elements exist, other wise exceptions are thrown if there are no elements in the array.
 
