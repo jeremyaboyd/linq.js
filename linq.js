@@ -10,24 +10,42 @@ Array.prototype.take = function(count) {
 	return this.slice(0, count);
 }
 
-Array.prototype.firstOrDefault = function() {
-	if(this.length > 0) return this[0];
+Array.prototype.firstOrDefault = function(predicate) {
+	var that = this;
+	if(predicate && typeof predicate === "function")
+  	that = that.where(predicate);
+    
+	if(that.length > 0) return that[0];
 	return null;
 }
 
-Array.prototype.first = function() {
-	if(this.length > 0) return this[0];
+Array.prototype.first = function(predicate) {
+	var that = this;
+	if(predicate && typeof predicate === "function")
+  	that = that.where(predicate);
+    
+	if(that.length > 0) return this[0];
 	throw "Sequence contains no elements";
 }
 
-Array.prototype.singleOrDefault = function() {
-	if(this.length === 1) return this[0];
-	return null;
+Array.prototype.singleOrDefault = function(predicate) {
+	var that = this;
+	if(predicate && typeof predicate === "function")
+  	that = that.where(predicate);
+    
+	if(that.length === 1) return this[0];
+	if(that.length === 0) return null;
+  
+	throw "More than one element exists in sequence";
 }
 
-Array.prototype.single = function() {
-	if(this.length === 1) return this[0];
-	if(this.length === 0)
+Array.prototype.single = function(predicate) {
+	var that = this;
+	if(predicate && typeof predicate === "function")
+  	that = that.where(predicate);
+    
+	if(that.length === 1) return this[0];
+	if(that.length === 0)
 		throw "Sequence contains no elements";
 	
 	throw "More than one element exists in sequence";
