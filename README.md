@@ -4,15 +4,15 @@ A simple JS library that mimics some of the C# LINQ Extension. Most of the exten
 Using this library, you are able to filter, sort, and map as you would in C#:
 
 ```js
-var data = users.where(u => u.isActive)
-                .orderBy("-lastLogin")
-		.skip(page * pageSize)
-		.take(pageSize)
-		.select(u => {
+var data = users.where( u => u.isActive )
+                .orderBy( "-lastLogin" )
+		.skip( page * pageSize )
+		.take( pageSize )
+		.select( u => {
 		    return {
 		        "User Name": u.userName,
-			"Last Login": new Date(u.lastLogin).toLocaleString(),
-			"Created On": new Date(u.createdOn).toLocaleString()
+			"Last Login": new Date( u.lastLogin ).toLocaleString(),
+			"Created On": new Date( u.createdOn ).toLocaleString()
 		    }
 		});
 ```
@@ -35,7 +35,7 @@ var arrToSort = [
 Filters the array based on the `predicate` function provided.
 
 ```js
-arrToSort.where( a => a.first === 1 );
+arrToSort.where( a => a.first === 2 );
 // expected outcome: [{ first: 2, second: "a", third: 0 }]
 ```
 
@@ -99,7 +99,7 @@ Will return the ONLY element in the array. Default will return null if 0 element
 If the optional predicate parameter is provided, will execute a .where() on the array first.
 
 ```js
-arrToSort.take(1).single();
+arrToSort.take( 1 ).single();
 // expected outcome: { first: 1, second: "a", third: 0 }
 
 arrToSort.single();
