@@ -23,12 +23,34 @@ var data = users.where( u => u.isActive )
 
 ```js
 var arrToSort = [
-	{ first: 1, second: "a", third: 0 },
+	{ first: 1, second: "a", third: 0, fourth: [ 1, 2, 3 ] },
 	{ first: 1, second: "b", third: 0 },
-	{ first: 2, second: "a", third: 0 },
+	{ first: 2, second: "a", third: 0, fourth: [ 1, 2, 3 ] },
 	{ first: 3, second: "b", third: 1 },
 	{ first: 3, second: "b", third: 0 },
 ];
+```
+
+### .any(predicate)
+Returns a boolean based on whether the `predicate` returns a truthy value for any element.
+
+```js
+arrToSort.any( a => a.first === 2 );
+// expected outcome: true
+
+arrToSort.any( a => a.first === 12 );
+// expected outcome: false
+```
+
+### .all(predicate)
+Returns a boolean based on whether the `predicate` returns a truthy value for every element.
+
+```js
+arrToSort.all( a => a.first );
+// expected outcome: true
+
+arrToSort.all( a => a.first === 1 );
+// expected outcome: false
 ```
 
 ### .where(predicate)
@@ -61,9 +83,9 @@ Orders array based on element's properties in ascending order unless denoted by 
 ```js
 arrToSort.orderBy( "first", "-second", "third" );
 /* expected outcome: [
-	{ first: 1, second: "b", third: 0 },
+	{ first: 1, second: "b", third: 0, fourth: [ 1, 2, 3 ] },
 	{ first: 1, second: "a", third: 0 },
-	{ first: 2, second: "a", third: 0 },
+	{ first: 2, second: "a", third: 0, fourth: [ 1, 2, 3 ] },
 	{ first: 3, second: "b", third: 0 },
 	{ first: 3, second: "b", third: 1 },
 ]*/
@@ -75,6 +97,17 @@ Returns array with elements based on the output of `func`
 ```js
 arrToSort.select( a => a.first );
 // expected outcome: [ 1, 1, 2, 3, 3 ]
+```
+
+### .selectMany(func)
+Returns a flattened array with elements based on the output of `func`
+
+```js
+arrToSort.selectMany( a => a.fourth );
+// expected outcome: [ 1, 2, 3, undefined, 1, 2, 3, undefined, undefined, undefined ]
+
+arrToSort.where( a => a.fourth ).selectMany( a => a.fourth );
+// expected outcome: [ 1, 2, 3, 1, 2, 3 ]
 ```
 
 ### .first(\[predicate]) and .firstOrDefault(\[predicate])
