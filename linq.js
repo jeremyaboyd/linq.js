@@ -21,6 +21,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+Array.prototype.all = function(predicate) {
+	for(var i = 0; i < this.length; i++)
+		if(!predicate.call(null, this[i])) return false;
+	return true;
+}
+
+Array.prototype.any = function(predicate) {
+	for(var i = 0; i < this.length; i++)
+		if(predicate.call(null, this[i])) return true;
+	return false;
+}
 
 Array.prototype.where = function(predicate) {
 	return this.filter(predicate);
@@ -36,6 +47,10 @@ Array.prototype.take = function(count) {
 
 Array.prototype.select = function(func) {
 	return this.map(func);
+}
+
+Array.prototype.selectMany = function(func) {
+	return [].concat.apply([], this.map(func));
 }
 
 Array.prototype.firstOrDefault = function(predicate) {
