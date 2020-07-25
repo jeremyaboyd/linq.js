@@ -67,7 +67,7 @@ Array.prototype.first = function(predicate) {
 	if(predicate && typeof predicate === "function")
   	that = that.where(predicate);
     
-	if(that.length > 0) return this[0];
+	if(that.length > 0) return that[0];
 	throw "Sequence contains no elements";
 }
 
@@ -76,7 +76,7 @@ Array.prototype.singleOrDefault = function(predicate) {
 	if(predicate && typeof predicate === "function")
   	that = that.where(predicate);
     
-	if(that.length === 1) return this[0];
+	if(that.length === 1) return that[0];
 	if(that.length === 0) return null;
   
 	throw "More than one element exists in sequence";
@@ -87,7 +87,7 @@ Array.prototype.single = function(predicate) {
 	if(predicate && typeof predicate === "function")
   	that = that.where(predicate);
     
-	if(that.length === 1) return this[0];
+	if(that.length === 1) return that[0];
 	if(that.length === 0)
 		throw "Sequence contains no elements";
 	
